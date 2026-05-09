@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import BlogPostLayout from "../../components/BlogPostLayout.astro";
+
+export async function getStaticPaths() {
+  const isProd = import.meta.env.PROD;
+  const posts = await getCollection(
+    "blog",
+    ({ data }) => !isProd || !data.draft,
+  );
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={`${post.data.title} | Al.Dev`}
+  description={post.data.description}
+>
+  <div class="site-shell">
+    <div class="ambient ambient-cyan" aria-hidden="true"></div>
+    <div class="ambient ambient-lavender" aria-hidden="true"></div>
+    <div class="ambient ambient-mint" aria-hidden="true"></div>
+
+    <SiteHeader sectionPrefix="/" />
+
+    <main>
+      <BlogPostLayout post={post}>
+        <Content />
+      </BlogPostLayout>
+    </main>
+
+    <SiteFooter />
+  </div>
+</Layout>

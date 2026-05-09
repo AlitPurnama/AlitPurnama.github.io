@@ -1,0 +1,28 @@
+---
+title: "Small Gameplay Loops in Luau"
+description: "How I think about short, repeatable loops for Roblox prototypes."
+publishDate: 2026-05-06
+category: "Game Systems"
+tags: ["Luau", "Gameplay", "Systems"]
+draft: false
+---
+
+import BlogCallout from "../../components/BlogCallout.astro";
+import TechBadgeGroup from "../../components/TechBadgeGroup.astro";
+
+Good Roblox prototypes usually have a small loop that can be understood quickly: act, receive feedback, improve, repeat.
+
+<TechBadgeGroup tags={["Luau", "Roblox Studio", "Gameplay"]} />
+
+## Keep the Loop Tiny
+
+For early prototypes, I try to keep the first loop small:
+
+1. Give the player one clear action.
+2. Show immediate feedback.
+3. Reward progress.
+4. Unlock one next choice.
+
+<BlogCallout tone="lavender">
+  If the first loop is fun with simple art, it usually survives visual polish.
+</BlogCallout>

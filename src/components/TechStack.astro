@@ -1,0 +1,54 @@
+---
+const stack = [
+  { name: "Astro", group: "Frontend", tone: "cyan" },
+  { name: "Tailwind CSS", group: "Styling", tone: "mint" },
+  { name: "Anime.js", group: "Animation", tone: "lavender" },
+  { name: "TypeScript", group: "Language", tone: "cyan" },
+  { name: "Roblox Studio", group: "Game Dev", tone: "mint" },
+  { name: "Luau", group: "Scripting", tone: "lavender" },
+  { name: "React Luau", group: "Roblox UI", tone: "cyan" },
+  { name: "SvelteKit", group: "Web App", tone: "mint" },
+];
+---
+
+<section id="stack" class="section-soft">
+  <div class="container-soft">
+    <div class="grid items-end gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p class="eyebrow reveal">Tech Stack</p>
+        <h2
+          class="reveal mt-5 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl"
+        >
+          Tools for web magic and Roblox systems.
+        </h2>
+      </div>
+      <p class="reveal text-lg leading-8 text-muted">
+        Focused stack for building cute interfaces, maintainable frontend pages,
+        and interactive gameplay systems.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        stack.map((item) => (
+          <article class="tech-card reveal glass-card p-6">
+            <div
+              class:list={[
+                "mb-6 h-14 w-14 rounded-full border-2 border-white/70 shadow-[inset_0_0_18px_rgba(255,255,255,0.7)]",
+                item.tone === "cyan" && "bg-aqua-soft/80",
+                item.tone === "lavender" && "bg-lavender-soft/80",
+                item.tone === "mint" && "bg-mint-soft/80",
+              ]}
+            ></div>
+            <p class="font-mono text-xs font-semibold text-aqua">
+              {item.group}
+            </p>
+            <h3 class="mt-2 font-heading text-2xl font-bold text-ink">
+              {item.name}
+            </h3>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

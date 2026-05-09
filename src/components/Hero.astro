@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+import mascot from "../assets/mascot.png";
+
+const strengths = [
+  { title: "Roblox Developer", text: "Building playful worlds.", tone: "cyan" },
+  { title: "UI Systems", text: "Designing cute interfaces.", tone: "lavender" },
+  {
+    title: "Gameplay Logic",
+    text: "Scripting responsive mechanics.",
+    tone: "mint",
+  },
+  { title: "Web Frontend", text: "Shipping clean web apps.", tone: "cyan" },
+];
+---
+
+<section
+  id="home"
+  class="container-soft grid min-h-[calc(100vh-4rem)] items-center gap-12 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:py-20"
+>
+  <div class="max-w-3xl">
+    <p class="eyebrow reveal">✦ Informatics Engineering & Roblox Dev</p>
+    <h1
+      class="reveal mt-7 font-heading text-[clamp(2.45rem,5vw,4.85rem)] font-bold leading-[1.06] text-ink"
+    >
+      Hi, I’m Al — I build <span class="text-lavender">cute worlds</span> & <span
+        class="text-aqua">interactive systems</span
+      >
+    </h1>
+    <p class="reveal mt-6 max-w-2xl text-lg leading-8 text-muted">
+      I blend software engineering principles with playful game design to create
+      immersive Roblox experiences, Luau-powered systems, and modern web
+      applications.
+    </p>
+    <div class="reveal mt-9 flex flex-wrap gap-4">
+      <a class="slime-button" href="#projects">
+        View Projects
+        <span aria-hidden="true">→</span>
+      </a>
+      <a class="slime-button secondary" href="#contact">Contact Me</a>
+    </div>
+  </div>
+
+  <div class="hero-visual reveal relative mx-auto w-full max-w-[540px]">
+    <div
+      class="sparkle left-[9%] top-[12%] text-lavender-soft"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="sparkle right-[14%] top-[22%] text-mint-soft"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="sparkle bottom-[20%] left-[18%] text-aqua-soft"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="mascot-card glass-card relative overflow-hidden p-8 sm:p-11">
+      <div
+        class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-aqua-soft/48 blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="absolute -bottom-20 left-8 h-56 w-56 rounded-full bg-lavender-soft/38 blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+      <Image
+        class="mascot-float relative z-10 mx-auto aspect-square w-full max-w-[360px] rounded-[2.4rem] object-cover shadow-[0_28px_80px_rgba(30,102,122,0.14)]"
+        src={mascot}
+        alt="Cute original pastel slime mascot"
+        width="1024"
+        height="1024"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <div
+      class="float-note glass-card absolute -left-4 bottom-8 hidden max-w-[230px] rounded-[1.4rem] p-4 lg:block"
+    >
+      <p class="font-mono text-xs font-semibold text-aqua">Luau System</p>
+      <p class="mt-1 text-sm text-muted">UI, quests, gameplay loops</p>
+    </div>
+    <div
+      class="float-note glass-card absolute -right-5 top-12 hidden max-w-[210px] rounded-[1.4rem] p-4 lg:block"
+    >
+      <p class="font-mono text-xs font-semibold text-lavender">Magic UI</p>
+      <p class="mt-1 text-sm text-muted">Soft web interfaces</p>
+    </div>
+  </div>
+</section>
+
+<section class="container-soft grid gap-5 pb-20 sm:grid-cols-2 lg:grid-cols-4">
+  {
+    strengths.map((item) => (
+      <article class="reveal glass-card p-6 text-center">
+        <div
+          class:list={[
+            "mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full font-mono text-sm font-bold",
+            item.tone === "lavender" && "bg-lavender-soft/80 text-lavender",
+            item.tone === "mint" && "bg-mint-soft/80 text-mint",
+            item.tone === "cyan" && "bg-aqua-soft/80 text-aqua",
+          ]}
+        >
+          ✧
+        </div>
+        <h2 class="font-heading text-xl font-bold text-ink">{item.title}</h2>
+        <p class="mt-2 text-sm leading-6 text-muted">{item.text}</p>
+      </article>
+    ))
+  }
+</section>

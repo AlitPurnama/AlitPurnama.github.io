@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import MagicAnimations from "../../components/MagicAnimations.astro";
+
+const isProd = import.meta.env.PROD;
+const posts = (
+  await getCollection("blog", ({ data }) => !isProd || !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<Layout
+  title="Blog | Al.Dev"
+  description="Dev notes about Roblox systems, Luau, UI design, and magical web development."
+>
+  <div class="site-shell">
+    <div class="ambient ambient-cyan" aria-hidden="true"></div>
+    <div class="ambient ambient-lavender" aria-hidden="true"></div>
+    <div class="ambient ambient-mint" aria-hidden="true"></div>
+
+    <SiteHeader sectionPrefix="/" />
+
+    <main>
+      <section class="container-soft py-16 md:py-24">
+        <div class="section-heading">
+          <p class="eyebrow reveal">Dev Notes & Magic Logs</p>
+          <h1
+            class="reveal mt-5 font-heading text-[clamp(2.6rem,5vw,5rem)] font-bold leading-[1.05] text-ink"
+          >
+            Blog about code, UI systems, and playful worlds.
+          </h1>
+          <p class="reveal mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted">
+            Short notes from building Roblox systems, Luau gameplay loops, and
+            pastel web experiences.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+          {posts.map((post) => <BlogCard post={post} />)}
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
+  <MagicAnimations />
+</Layout>

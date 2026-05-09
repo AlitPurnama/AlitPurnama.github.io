@@ -1,0 +1,36 @@
+---
+title: "Notes on Roblox UI Systems"
+description: "Practical thoughts on building Roblox UI that feels playful but stays predictable."
+publishDate: 2026-05-08
+category: "Roblox Dev"
+tags: ["Roblox Studio", "Luau", "UI Systems"]
+draft: false
+---
+
+import BlogCallout from "../../components/BlogCallout.astro";
+import ProjectNote from "../../components/ProjectNote.astro";
+import TechBadgeGroup from "../../components/TechBadgeGroup.astro";
+
+Roblox UI needs fast feedback. Players should know when a button is active, disabled, loading, or finished.
+
+<TechBadgeGroup tags={["Luau", "React Luau", "Roblox Studio"]} />
+
+## State Before Style
+
+Before adding polish, I like to map the UI states:
+
+- idle
+- hover or focus
+- pressed
+- loading
+- success or error
+
+<BlogCallout tone="mint">
+  A cute button is still a system. It needs clear states before it needs
+  sparkles.
+</BlogCallout>
+
+<ProjectNote title="Roblox note">
+  Luau modules help keep UI state separate from gameplay logic, which makes
+  iteration less risky.
+</ProjectNote>

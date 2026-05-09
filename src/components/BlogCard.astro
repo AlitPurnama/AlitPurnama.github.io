@@ -1,0 +1,134 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import BlogMeta from "./BlogMeta.astro";
+import BlogTagList from "./BlogTagList.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const {
+  title,
+  description,
+  publishDate,
+  updatedDate,
+  category,
+  tags,
+  coverImage,
+  coverAlt,
+} = post.data;
+---
+
+<article class="blog-card glass-card overflow-hidden">
+  <a href={`/blog/${post.id}/`} class="block h-full">
+    <div class="blog-thumb">
+      {
+        coverImage ? (
+          <Image
+            src={coverImage}
+            alt={coverAlt ?? ""}
+            class="h-full w-full object-cover"
+            width={960}
+            height={540}
+          />
+        ) : (
+          <div class="blog-thumb-placeholder" aria-hidden="true">
+            <div class="blog-thumb-orb blog-thumb-orb-one" />
+            <div class="blog-thumb-orb blog-thumb-orb-two" />
+            <div class="blog-thumb-sparkle">✦</div>
+          </div>
+        )
+      }
+    </div>
+    <div class="flex h-full flex-col p-6">
+      <BlogMeta
+        category={category}
+        publishDate={publishDate}
+        updatedDate={updatedDate}
+      />
+      <h2 class="mt-4 font-heading text-2xl font-bold leading-tight text-ink">
+        {title}
+      </h2>
+      <p class="mt-3 grow text-sm leading-7 text-muted">{description}</p>
+      <div class="mt-6">
+        <BlogTagList tags={tags} />
+      </div>
+    </div>
+  </a>
+</article>
+
+<style>
+  .blog-card {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 30px 90px rgba(30, 102, 122, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  }
+
+  .blog-thumb {
+    position: relative;
+    min-height: 220px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(191, 200, 204, 0.32);
+  }
+
+  .blog-thumb-placeholder {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        circle at 28% 24%,
+        rgba(255, 255, 255, 0.78),
+        transparent 5rem
+      ),
+      radial-gradient(
+        circle at 78% 72%,
+        rgba(217, 181, 255, 0.4),
+        transparent 6rem
+      ),
+      linear-gradient(
+        135deg,
+        rgba(167, 232, 255, 0.66),
+        rgba(173, 236, 199, 0.5)
+      );
+  }
+
+  .blog-thumb-orb {
+    position: absolute;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.58);
+    background: rgba(255, 255, 255, 0.34);
+    box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.62);
+  }
+
+  .blog-thumb-orb-one {
+    top: 2.4rem;
+    right: 3rem;
+    width: 5.2rem;
+    height: 5.2rem;
+  }
+
+  .blog-thumb-orb-two {
+    bottom: 2.2rem;
+    left: 2.4rem;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .blog-thumb-sparkle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: rgba(111, 80, 146, 0.6);
+    font-size: 4rem;
+    transform: translate(-50%, -50%);
+  }
+</style>

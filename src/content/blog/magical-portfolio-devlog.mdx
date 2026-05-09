@@ -1,0 +1,29 @@
+---
+title: "Designing This Magical Portfolio"
+description: "A short devlog on turning a developer portfolio into a softer, slime-inspired web space."
+publishDate: 2026-05-10
+category: "Devlog"
+tags: ["Astro", "Tailwind CSS", "Portfolio"]
+draft: false
+---
+
+import BlogCallout from "../../components/BlogCallout.astro";
+import ProjectNote from "../../components/ProjectNote.astro";
+import TechBadgeGroup from "../../components/TechBadgeGroup.astro";
+
+The goal was not to make a loud anime landing page. The goal was a portfolio that feels friendly first, then technical once someone starts reading.
+
+<BlogCallout tone="aqua">
+  Cute interface work still needs strong spacing, readable hierarchy, and clear
+  interaction states.
+</BlogCallout>
+
+## Visual System
+
+I used a creamy base, pastel cyan, lavender, and mint so the page can feel magical without losing contrast.
+
+<TechBadgeGroup tags={["Astro", "Tailwind CSS", "Anime.js"]} />
+
+<ProjectNote title="Design rule">
+  Decorative blobs should support content depth, not compete with the text.
+</ProjectNote>

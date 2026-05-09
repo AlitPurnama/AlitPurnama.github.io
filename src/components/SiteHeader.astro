@@ -1,0 +1,45 @@
+---
+interface Props {
+  sectionPrefix?: string;
+}
+
+const { sectionPrefix = "" } = Astro.props;
+
+const navItems = [
+  { href: `${sectionPrefix}#home`, label: "Home" },
+  { href: `${sectionPrefix}#about`, label: "About" },
+  { href: `${sectionPrefix}#projects`, label: "Projects" },
+  { href: `${sectionPrefix}#stack`, label: "Stack" },
+  { href: "/blog", label: "Blog" },
+  { href: `${sectionPrefix}#contact`, label: "Contact" },
+];
+
+const contactHref = `${sectionPrefix}#contact`;
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-white/60 bg-[#fbfaee]/76 backdrop-blur-xl"
+>
+  <nav class="container-soft flex min-h-16 items-center justify-between gap-5">
+    <a href="/" class="font-heading text-3xl font-bold text-aqua">Al.Dev</a>
+
+    <div
+      class="hidden items-center gap-1 rounded-full border border-white/70 bg-white/48 p-1 shadow-[0_14px_36px_rgba(30,102,122,0.08)] md:flex"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-full px-4 py-2 text-sm font-semibold text-muted transition hover:bg-aqua-soft/58 hover:text-aqua"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <a href={contactHref} class="slime-button min-h-9 px-5 py-2 text-[0.72rem]"
+      >Hire Me</a
+    >
+  </nav>
+</header>

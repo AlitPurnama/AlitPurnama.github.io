@@ -1,0 +1,33 @@
+---
+interface Props {
+  tone?: "aqua" | "lavender" | "mint";
+}
+
+const { tone = "aqua" } = Astro.props;
+---
+
+<aside
+  class:list={[
+    "my-7 rounded-[1.5rem] border-2 bg-white/62 p-5 shadow-[0_18px_48px_rgba(30,102,122,0.10)] backdrop-blur-xl",
+    tone === "aqua" && "border-aqua-soft/80",
+    tone === "lavender" && "border-lavender-soft/80",
+    tone === "mint" && "border-mint-soft/80",
+  ]}
+>
+  <div class="flex gap-4">
+    <span
+      class:list={[
+        "mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-mono text-sm font-bold",
+        tone === "aqua" && "bg-aqua-soft/80 text-aqua",
+        tone === "lavender" && "bg-lavender-soft/80 text-lavender",
+        tone === "mint" && "bg-mint-soft/80 text-mint",
+      ]}
+      aria-hidden="true"
+    >
+      ✦
+    </span>
+    <div class="text-muted">
+      <slot />
+    </div>
+  </div>
+</aside>

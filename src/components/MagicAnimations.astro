@@ -1,0 +1,80 @@
+<script>
+  import { animate, stagger } from "animejs";
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  if (!reduceMotion) {
+    animate(".hero-visual .mascot-float", {
+      y: [{ from: -8, to: 8 }],
+      duration: 3200,
+      ease: "inOutSine",
+      loop: true,
+      alternate: true,
+    });
+
+    animate(".float-note", {
+      y: [{ from: 0, to: -10 }],
+      duration: 3600,
+      delay: stagger(260),
+      ease: "inOutSine",
+      loop: true,
+      alternate: true,
+    });
+
+    animate(".ambient", {
+      scale: [{ from: 0.96, to: 1.04 }],
+      rotate: [{ from: -2, to: 2 }],
+      duration: 6200,
+      delay: stagger(300),
+      ease: "inOutSine",
+      loop: true,
+      alternate: true,
+    });
+
+    animate(".sparkle", {
+      opacity: [{ from: 0.35, to: 1 }],
+      scale: [{ from: 0.72, to: 1.18 }],
+      duration: 1800,
+      delay: stagger(180),
+      ease: "inOutSine",
+      loop: true,
+      alternate: true,
+    });
+  }
+
+  const revealTargets = document.querySelectorAll(".reveal");
+
+  if (reduceMotion) {
+    revealTargets.forEach((target) => target.classList.add("revealed"));
+  } else {
+    const reveal = (targets) => {
+      animate(targets, {
+        opacity: [{ from: 0, to: 1 }],
+        y: [{ from: 18, to: 0 }],
+        duration: 760,
+        delay: stagger(70),
+        ease: "outCubic",
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .map((entry) => {
+            observer.unobserve(entry.target);
+            return entry.target;
+          });
+
+        if (visible.length > 0) {
+          reveal(visible);
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
+    );
+
+    revealTargets.forEach((target) => observer.observe(target));
+  }
+</script>

@@ -1,0 +1,232 @@
+---
+const projects = [
+  {
+    title: "Sawit Empire",
+    category: "Roblox Tycoon",
+    description:
+      "A resource-driven Roblox experience with progression loops, UI feedback, and playful economy systems.",
+    tags: ["Roblox Studio", "Luau", "Gameplay"],
+    tone: "cyan",
+  },
+  {
+    title: "Pendakian Terakhir",
+    category: "Adventure Game",
+    description:
+      "A climbing-themed Roblox project focused on atmosphere, obstacle pacing, and survival-style tension.",
+    tags: ["Roblox Studio", "Luau", "Worldbuilding"],
+    tone: "lavender",
+  },
+  {
+    title: "Parkir Liar",
+    category: "Simulation",
+    description:
+      "A playful systems prototype exploring parking interactions, player choices, and compact UI flows.",
+    tags: ["Systems", "Luau", "UI"],
+    tone: "mint",
+  },
+  {
+    title: "InklusiCerdas",
+    category: "Education Platform",
+    description:
+      "A web concept for accessible learning flows, friendly interface patterns, and structured content.",
+    tags: ["Web", "Accessibility", "Frontend"],
+    tone: "cyan",
+  },
+  {
+    title: "Lab Perangkat Lunak Website",
+    category: "Lab Website",
+    description:
+      "A practical web project for presenting lab information, internal workflows, and academic context.",
+    tags: ["Astro", "Tailwind CSS", "Web"],
+    tone: "lavender",
+  },
+  {
+    title: "Personal Portfolio",
+    category: "Portfolio",
+    description:
+      "This magical-tech portfolio, designed around pastel slime visuals, soft glass cards, and clean content.",
+    tags: ["Astro", "Anime.js", "Tailwind CSS"],
+    tone: "mint",
+  },
+];
+---
+
+<section id="projects" class="section-soft">
+  <div class="container-soft">
+    <div class="section-heading">
+      <p class="eyebrow reveal">Featured Projects</p>
+      <h2
+        class="reveal mt-5 font-heading text-4xl font-bold text-ink md:text-5xl"
+      >
+        Magical Creations
+      </h2>
+      <p class="reveal mt-4 text-lg leading-8 text-muted">
+        Project cards blend game systems, web interfaces, and soft fantasy
+        presentation.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+      {
+        projects.map((project) => (
+          <article class="project-card reveal glass-card overflow-hidden">
+            <a href="#" aria-label={`Open ${project.title}`} class="block">
+              <div
+                class:list={["project-thumb", `project-thumb-${project.tone}`]}
+              >
+                <div class="thumb-orb thumb-orb-one" />
+                <div class="thumb-orb thumb-orb-two" />
+                <div class="thumb-lines" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="font-mono text-xs font-semibold text-aqua">
+                      {project.category}
+                    </p>
+                    <h3 class="mt-2 font-heading text-2xl font-bold text-ink">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <span class="mt-1 text-xl text-lavender" aria-hidden="true">
+                    ↗
+                  </span>
+                </div>
+                <p class="mt-4 min-h-24 text-sm leading-7 text-muted">
+                  {project.description}
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  {project.tags.map((tag, index) => (
+                    <span
+                      class:list={[
+                        "tech-chip",
+                        index === 1 && "lavender",
+                        index === 2 && "mint",
+                      ]}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-card {
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 30px 90px rgba(30, 102, 122, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  }
+
+  .project-thumb {
+    position: relative;
+    min-height: 210px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(191, 200, 204, 0.32);
+  }
+
+  .project-thumb-cyan {
+    background:
+      radial-gradient(
+        circle at 20% 25%,
+        rgba(255, 255, 255, 0.8),
+        transparent 4rem
+      ),
+      linear-gradient(
+        135deg,
+        rgba(167, 232, 255, 0.74),
+        rgba(173, 236, 199, 0.55)
+      );
+  }
+
+  .project-thumb-lavender {
+    background:
+      radial-gradient(
+        circle at 76% 28%,
+        rgba(255, 255, 255, 0.82),
+        transparent 4rem
+      ),
+      linear-gradient(
+        135deg,
+        rgba(239, 219, 255, 0.78),
+        rgba(167, 232, 255, 0.48)
+      );
+  }
+
+  .project-thumb-mint {
+    background:
+      radial-gradient(
+        circle at 28% 72%,
+        rgba(255, 255, 255, 0.82),
+        transparent 4rem
+      ),
+      linear-gradient(
+        135deg,
+        rgba(173, 236, 199, 0.7),
+        rgba(217, 181, 255, 0.42)
+      );
+  }
+
+  .thumb-orb {
+    position: absolute;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.58);
+    background: rgba(255, 255, 255, 0.34);
+    box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.62);
+  }
+
+  .thumb-orb-one {
+    top: 2.2rem;
+    right: 3rem;
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .thumb-orb-two {
+    bottom: 2.2rem;
+    left: 2.6rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .thumb-lines {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: grid;
+    width: min(64%, 290px);
+    gap: 0.75rem;
+    transform: translate(-50%, -50%);
+  }
+
+  .thumb-lines span {
+    height: 0.72rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .thumb-lines span:nth-child(2) {
+    width: 78%;
+  }
+
+  .thumb-lines span:nth-child(3) {
+    width: 54%;
+  }
+</style>

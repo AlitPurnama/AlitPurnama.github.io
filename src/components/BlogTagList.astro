@@ -1,0 +1,25 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <div class="flex flex-wrap gap-2">
+      {tags.map((tag, index) => (
+        <span
+          class:list={[
+            "tech-chip",
+            index % 3 === 1 && "lavender",
+            index % 3 === 2 && "mint",
+          ]}
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  )
+}
